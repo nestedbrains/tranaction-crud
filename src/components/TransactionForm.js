@@ -5,6 +5,7 @@ class TransactionForm extends Component {
     state = {
         ...this.returnStateObject()
     }
+
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.currentId !== this.props.currentId || prevProps.list.length !== this.props.list.length) {
             this.setState({
@@ -35,7 +36,18 @@ class TransactionForm extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
         console.log(this.state)
-        this.props.saveOrUpdateData(this.state)
+        if (this.state.accountName === "") {
+            alert("enter Account Name")
+        }
+        else if (this.state.bankNo === "") {
+            alert("Enter Bank No")
+        }
+        else if (this.state.amount === "") {
+            alert("Enter Amount")
+        }
+        else {
+            this.props.saveOrUpdateData(this.state)
+        }
     }
 
     render() {
