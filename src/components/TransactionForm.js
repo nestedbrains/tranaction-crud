@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import {bindActionCreators} from "redux";
+import * as action from "../redux/actions/transaction/tranasctionActions";
+import {connect} from "react-redux";
 
 class TransactionForm extends Component {
 
@@ -38,15 +41,16 @@ class TransactionForm extends Component {
         console.log(this.state)
         if (this.state.accountName === "") {
             alert("enter Account Name")
-        }
-        else if (this.state.bankNo === "") {
+        } else if (this.state.bankNo === "") {
             alert("Enter Bank No")
-        }
-        else if (this.state.amount === "") {
+        } else if (this.state.amount === "") {
             alert("Enter Amount")
-        }
-        else {
-            this.props.saveOrUpdateData(this.state)
+        } else {
+            if (this.props.currentId === -1) {
+                this.props.insertTransaction(this.state)
+            } else {
+                this.props.updateTransaction(this.state)
+            }
         }
     }
 
@@ -71,4 +75,16 @@ class TransactionForm extends Component {
     }
 }
 
-export default TransactionForm;
+const mapStateToProps = state => {
+    return {
+        list: state.transaction.list,
+        currentId: state.transaction.currentId
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators({
+        insertTransaction: action.insert,
+        updateTransaction: action.update
+    }, dispatch)
+}
+export default connect(mapStateToProps, mapDispatchToProps)(TransactionForm);
