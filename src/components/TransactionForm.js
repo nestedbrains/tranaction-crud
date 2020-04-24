@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {bindActionCreators} from "redux";
 import * as action from "../redux/actions/transaction/tranasctionActions";
 import {connect} from "react-redux";
+import UIkit from 'uikit'
 
 class TransactionForm extends Component {
 
@@ -40,11 +41,11 @@ class TransactionForm extends Component {
         event.preventDefault()
         console.log(this.state)
         if (this.state.accountName === "") {
-            alert("enter Account Name")
+            UIkit.notification({message: 'Enter Account Name...', status: 'danger'})
         } else if (this.state.bankNo === "") {
-            alert("Enter Bank No")
+            UIkit.notification({message: 'Enter  Account Number...', status: 'danger'})
         } else if (this.state.amount === "") {
-            alert("Enter Amount")
+            UIkit.notification({message: 'Enter Amount...', status: 'danger'})
         } else {
             if (this.props.currentId === -1) {
                 this.props.insertTransaction(this.state)

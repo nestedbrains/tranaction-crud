@@ -28,6 +28,9 @@ function transactionReducer(state = initState, action) {
 
         case appConstants.UPDATE_INDEX:
             return {list: list, currentId: action.payload}
+
+        case appConstants.UPDATE_LIST:
+            return {list: action.payload, currentId: -1}
     }
 
     return state

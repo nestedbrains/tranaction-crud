@@ -27,3 +27,10 @@ export const updateIndex = data => {
         payload: data
     }
 }
+
+export const updateList = data => {
+    return {
+        type: appConstants.UPDATE_LIST,
+        payload: data
+    }
+}
