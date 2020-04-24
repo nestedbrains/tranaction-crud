@@ -57,18 +57,49 @@ class TransactionForm extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit} autoComplete="off">
-                    <input type="text" name="bankNo" placeholder="enter Bank no"
-                           value={this.state.bankNo} onChange={this.handleInputChanges}
-                    /><br/>
-                    <input type="text" name="accountName" placeholder="enter account Name"
-                           value={this.state.accountName} onChange={this.handleInputChanges}
-                    /><br/>
-                    <input type="text" name="amount" placeholder="enter amount"
-                           value={this.state.amount} onChange={this.handleInputChanges}
-                    /> <br/>
+                <form onSubmit={this.handleSubmit} className="uk-form">
+                    <div className="uk-margin">
+                        <div className="uk-form-controls">
+                            <input
+                                className="uk-input"
+                                id="form-stacked-text"
+                                type="text"
+                                name="bankNo"
+                                placeholder="Enter Account No..."
+                                value={this.state.bankNo}
+                                onChange={this.handleInputChanges}
+                            />
+                        </div>
+                    </div>
 
-                    <button type="submit">Submit</button>
+                    <div className="uk-margin">
+                        <div className="uk-form-controls">
+                            <input
+                                className="uk-input"
+                                id="form-stacked-text"
+                                type="text"
+                                name="accountName"
+                                placeholder="Enter Account Name..."
+                                value={this.state.accountName}
+                                onChange={this.handleInputChanges}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="uk-margin">
+                        <div className="uk-form-controls">
+                            <input
+                                className="uk-input"
+                                id="form-stacked-text"
+                                type="text"
+                                name="amount"
+                                placeholder="Enter Amount..."
+                                value={this.state.amount}
+                                onChange={this.handleInputChanges}
+                            />
+                        </div>
+                    </div>
+                    <button className="uk-button uk-button-primary">Save</button>
                 </form>
             </div>
         );
