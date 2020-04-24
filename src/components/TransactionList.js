@@ -1,24 +1,30 @@
 import React, {Component} from 'react';
 import TransactionForm from "./TransactionForm";
 import {connect} from 'react-redux'
-import {bindActionCreators} from 'redux'
 import * as action from '../redux/actions/transaction/tranasctionActions'
 
 class TransactionList extends Component {
 
+    style = {
+        margin: "100px 300px "
+    }
+
     deleteHandle = (index) => {
+        console.log(this.props.deleteTransaction(index)
+        )
         this.props.deleteTransaction(index)
     }
 
     editHandle = (index) => {
+        console.log(index)
+        console.log(this.props.updatedCurrentId(index))
         this.props.updatedCurrentId(index)
     }
 
     render() {
         return (
-            <div>
-                <TransactionForm
-                />
+            <div style={this.style}>
+                <TransactionForm/>
                 <hr/>
                 <table border="1">
                     <thead>
@@ -59,14 +65,19 @@ const mapStateToProps = state => {
         list: state.transaction.list
     }
 }
+/*
+* for using bindActionsCreators need to added this lin
+* import {bindActionCreators} from 'redux'
+* */
 // const mapDispatchToProps = dispatch => {
 //     return bindActionCreators({
 //         deleteTransaction : action.remove,
 //         updatedCurrentId: action.updateIndex
 //     },dispatch)
 // }
-    const mapDispatchToProps = dispatch =>( {
-        deleteTransaction: () => dispatch(action.remove()),
-        updatedCurrentId : () => dispatch(action.updateIndex())
-    })
-export default connect(mapStateToProps,mapDispatchToProps)(TransactionList);
+const mapDispatchToProps =( dispatch )=> ({
+    deleteTransaction: (index) => dispatch(action.remove(index)),
+    updatedCurrentId: (index) => dispatch(action.updateIndex(index))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(TransactionList);
